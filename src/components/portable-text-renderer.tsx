@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
-import { urlForImage } from "@/lib/sanity/image";
+import { urlForImage } from "../lib/sanity/image";
 
 const components: PortableTextComponents = {
   marks: {

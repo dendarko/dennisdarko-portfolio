@@ -1,5 +1,5 @@
 import imageUrlBuilder from "@sanity/image-url";
-import { getSanityClient, isSanityConfigured } from "@/lib/sanity/client";
+import { getSanityClient, isSanityConfigured } from "./client";
 
 let builder: ReturnType<typeof imageUrlBuilder> | null = null;
 
