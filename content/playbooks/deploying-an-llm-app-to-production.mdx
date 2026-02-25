@@ -1,0 +1,25 @@
+---
+title: Deploying an LLM App to Production
+description: Short checklist for shipping an LLM application safely and repeatably.
+date: 2026-02-05
+tags:
+  - LLMOps
+  - Deployment
+checklistLength: 12
+audience: Engineers shipping their first production LLM workflow
+---
+
+## Checklist
+
+- Define one measurable user workflow and success metric.
+- Separate prompt logic, retrieval, and orchestration concerns.
+- Add request/response schema validation.
+- Add rate limiting, auth, and secrets management.
+- Implement tracing, logs, and token/cost metrics.
+- Create smoke tests and regression evaluation set.
+- Add fallback behavior for provider outages/timeouts.
+- Gate deployment with CI checks.
+- Version prompts, models, and datasets.
+- Document rollback procedure.
+- Review privacy and retention policies.
+- Pilot with a small user cohort before full rollout.

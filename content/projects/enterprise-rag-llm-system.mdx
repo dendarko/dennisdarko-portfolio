@@ -1,0 +1,64 @@
+---
+title: Enterprise RAG LLM System
+description: Production-ready enterprise retrieval-augmented generation system with evaluation gates, observability, and guardrails.
+date: 2026-01-15
+tags:
+  - RAG
+  - LLMOps
+  - FastAPI
+  - Evaluation
+slug: enterprise-rag-llm-system
+stack:
+  - Python
+  - FastAPI
+  - Postgres
+  - Vector DB
+  - OpenTelemetry
+  - Docker
+problem: Teams needed fast answers across internal documentation, but existing search and chat tools were inconsistent, hard to trust, and impossible to monitor.
+built: A production RAG service with ingestion pipelines, retrieval quality evaluation, prompt safety checks, and request-level tracing.
+architectureImage: /architecture/enterprise-rag-llm-system.svg
+links:
+  github: https://github.com/dendarko/enterprise-rag-llm-system
+  demo: https://example.com/demo/enterprise-rag
+  docs: https://example.com/docs/enterprise-rag
+---
+
+## System design
+
+- Built an ingestion pipeline that normalizes docs, chunks content by semantic boundaries, and stores embeddings with metadata for source-aware citations.
+- Added hybrid retrieval (keyword + vector) with re-ranking to improve answer grounding on long operational runbooks.
+- Implemented a service boundary between retrieval, generation, and evaluation so each component could be independently tested and upgraded.
+- Exposed a typed API contract for chat requests, session state, and citation payloads to simplify frontend integration.
+
+## Evaluation / Quality
+
+- Created a golden dataset of representative enterprise questions across onboarding, IT support, policy, and sales operations.
+- Added retrieval relevance checks, citation completeness checks, and response faithfulness review criteria for release candidates.
+- Ran regression evaluation in CI for prompt/template changes and blocked merges when critical scenarios dropped below threshold.
+- Logged failed prompts and unsupported queries into a triage queue to expand coverage each sprint.
+
+## Reliability / Security
+
+- Applied request rate limiting and API key auth for internal consumers.
+- Added prompt injection defense layers: instruction stripping, tool allowlists, source domain restrictions, and citation-required output format checks.
+- Implemented timeout budgets, fallback responses, and circuit-breaker behavior when model or vector services degraded.
+- Centralized tracing and structured logs for incident diagnosis (latency spikes, retrieval misses, malformed citations).
+
+## Results
+
+- Reduced average time-to-answer for internal knowledge tasks from ~15 minutes to under 90 seconds in pilot workflows.
+- Increased answer trust by requiring source citations and exposing retrieval snippets for human verification.
+- Cut support escalations for repeated policy questions by routing users to grounded responses first.
+
+## Links
+
+- GitHub repository: https://github.com/dendarko/enterprise-rag-llm-system
+- Demo (placeholder): https://example.com/demo/enterprise-rag
+- Docs (placeholder): https://example.com/docs/enterprise-rag
+
+## Next improvements
+
+- Add tenant-specific evaluation slices for different departments.
+- Introduce model routing for cost/latency optimization by query complexity.
+- Expand document freshness signals and stale-content alerts.

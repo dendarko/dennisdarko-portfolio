@@ -1,0 +1,60 @@
+---
+title: LLM Revenue Analyzer
+description: AI-assisted analytics workflow for revenue call and report analysis with grounded summaries and evidence snippets.
+date: 2025-06-06
+tags:
+  - Analytics
+  - LLM
+  - Retrieval
+slug: llm-revenue-analyzer
+stack:
+  - Python
+  - FastAPI
+  - Postgres
+  - Vector Search
+  - Docker
+problem: Finance and operations teams spent significant time manually reviewing earnings-call transcripts and performance notes for recurring trends.
+built: An LLM-backed analysis service that extracts themes, generates grounded summaries, and maps findings to evidence snippets with citations.
+architectureImage: /architecture/llm-revenue-analyzer.svg
+links:
+  github: https://github.com/dendarko/llm-revenue-analyzer
+  demo: https://example.com/demo/revenue-analyzer
+---
+
+## System design
+
+- Ingested transcript and report files, extracted metadata, and generated embeddings for section-level retrieval.
+- Built a workflow that combines structured metric parsing with qualitative theme extraction for a balanced output.
+- Added a response schema so generated summaries include confidence notes, cited excerpts, and follow-up questions.
+- Designed API endpoints for batch analysis jobs and interactive deep dives.
+
+## Evaluation / Quality
+
+- Created sample analyst tasks (trend detection, risk extraction, management commentary comparison) and benchmark prompts against them.
+- Added citation checks to ensure every key claim links back to transcript evidence.
+- Tracked latency and token cost per analysis mode (quick scan vs deep review).
+- Collected analyst feedback on usefulness and missing context to improve prompts and retrieval settings.
+
+## Reliability / Security
+
+- Implemented job queue retries and idempotent processing for large transcript batches.
+- Scoped access to uploaded files and output summaries by user/team role.
+- Applied prompt hardening to separate user instructions from retrieved evidence and system policy.
+- Logged provider errors and degraded gracefully to partial outputs when a sub-step failed.
+
+## Results
+
+- Turned recurring transcript review workflows into reusable analysis runs with consistent outputs.
+- Improved collaboration by giving teams shared summaries plus direct evidence references.
+- Created a path to integrate qualitative analysis with existing finance dashboards.
+
+## Links
+
+- GitHub repository: https://github.com/dendarko/llm-revenue-analyzer
+- Demo (placeholder): https://example.com/demo/revenue-analyzer
+
+## Next improvements
+
+- Add company/sector benchmark comparisons across multiple quarters.
+- Introduce human feedback capture to refine themes and tone per team.
+- Export structured findings directly into BI tools.

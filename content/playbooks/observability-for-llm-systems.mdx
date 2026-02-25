@@ -1,0 +1,22 @@
+---
+title: Observability for LLM Systems
+description: Minimal observability checklist for LLM services before and after launch.
+date: 2026-01-10
+tags:
+  - Observability
+  - Monitoring
+checklistLength: 9
+audience: Engineers responsible for AI system reliability
+---
+
+## Checklist
+
+- Trace every request across retrieval, generation, and post-processing.
+- Capture latency breakdowns by step.
+- Track token usage and cost per request.
+- Store sampled prompts/responses with redaction.
+- Log retrieval sources and citation coverage.
+- Monitor error rate by provider/model.
+- Create alerts for latency, failures, and cost spikes.
+- Build a failure taxonomy for triage.
+- Review dashboards with product and engineering stakeholders weekly.

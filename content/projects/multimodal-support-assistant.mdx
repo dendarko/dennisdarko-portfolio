@@ -1,0 +1,60 @@
+---
+title: Multimodal Support Assistant
+description: Multimodal AI support assistant prototype with retrieval, image triage, guardrails, and human escalation.
+date: 2026-02-02
+tags:
+  - Multimodal
+  - RAG
+  - Support
+slug: multimodal-support-assistant
+stack:
+  - Python
+  - FastAPI
+  - Object Storage
+  - Vector DB
+  - OpenTelemetry
+problem: Support teams needed faster triage for tickets containing screenshots, logs, and product documentation references.
+built: A multimodal assistant that combines text/image triage, knowledge retrieval, and escalation routing with guardrail checks.
+architectureImage: /architecture/multimodal-support-assistant.svg
+links:
+  github: https://github.com/dendarko/multimodal-support-assistant
+  demo: https://example.com/demo/multimodal-support
+---
+
+## System design
+
+- Built a pipeline that extracts ticket text, parses attachments, and creates multimodal context objects for downstream processing.
+- Routed requests through retrieval, classification, and response generation steps depending on confidence and policy constraints.
+- Added escalation hooks when confidence was low, policy risk was high, or a human approval step was required.
+- Standardized response objects to include recommended actions, evidence, and escalation rationale.
+
+## Evaluation / Quality
+
+- Benchmarked ticket routing accuracy, retrieval relevance, and response usefulness on a curated support dataset.
+- Added regression tests for attachment edge cases (blurry screenshots, partial logs, missing metadata).
+- Measured escalation precision to reduce false automation on complex tickets.
+- Tracked latency by stage to identify bottlenecks in attachment processing.
+
+## Reliability / Security
+
+- Isolated attachment processing and applied file validation before ingestion.
+- Added redaction checks for secrets and PII in logs/screenshots before persistence.
+- Applied prompt injection defenses to retrieved content and user-submitted text.
+- Defined timeouts and fallbacks for partial analysis when image processing failed.
+
+## Results
+
+- Improved first-pass ticket triage consistency and reduced manual classification effort in pilot usage.
+- Increased transparency through evidence-backed recommendations and explicit confidence signals.
+- Created a clear roadmap for production hardening with scoped guardrails and escalation policies.
+
+## Links
+
+- GitHub repository: https://github.com/dendarko/multimodal-support-assistant
+- Demo (placeholder): https://example.com/demo/multimodal-support
+
+## Next improvements
+
+- Add domain adapters for multiple product lines.
+- Introduce fine-grained policy actions for regulated support scenarios.
+- Expand human feedback loops to improve routing confidence calibration.

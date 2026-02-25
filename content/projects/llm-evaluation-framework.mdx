@@ -1,0 +1,60 @@
+---
+title: LLM Evaluation Framework
+description: Regression-first evaluation harness for LLM features with scored datasets, CI integration, and release gating.
+date: 2025-10-18
+tags:
+  - Evaluation
+  - CI
+  - LLMOps
+slug: llm-evaluation-framework
+stack:
+  - Python
+  - Pytest
+  - Pandas
+  - JSONL
+  - GitHub Actions
+problem: Prompt and model changes were shipping without a consistent way to detect quality regressions across business-critical tasks.
+built: A modular evaluation framework with dataset versioning, scored test suites, CI reporting, and threshold-based release gates.
+architectureImage: /architecture/llm-evaluation-framework.svg
+links:
+  github: https://github.com/dendarko/llm-evaluation-framework
+  docs: https://example.com/docs/llm-eval
+---
+
+## System design
+
+- Structured evaluation datasets as versioned JSONL files with metadata for task type, difficulty, and expected behavior.
+- Separated evaluators into deterministic checks (format, schema, citation presence) and model-based rubric scoring for nuanced tasks.
+- Added a CLI and Python API so teams could run local smoke tests or full CI suites from the same configuration.
+- Stored run artifacts (scores, failures, prompts, model version) for comparison across releases.
+
+## Evaluation / Quality
+
+- Implemented scorecards for exact match, rubric score, latency, and cost per test set.
+- Added scenario tags to surface regressions by domain (support, analytics, compliance, summarization).
+- Introduced threshold policies with warning and failure bands to allow controlled iteration while preventing major quality drops.
+- Built a “failure fingerprints” view to group recurring prompt issues and reduce triage time.
+
+## Reliability / Security
+
+- Sanitized secrets and user data in logs before persisting evaluation artifacts.
+- Enforced test-time rate limiting and backoff behavior to avoid provider throttling during CI.
+- Added deterministic seeds and model config capture to improve reproducibility of benchmark runs.
+- Defined environment-variable based provider configuration to keep credentials out of repo.
+
+## Results
+
+- Reduced release-risk conversations from ad hoc review to score-based go/no-go decisions.
+- Increased confidence in prompt refactors by running targeted regression subsets before merging.
+- Made evaluation outputs understandable for engineers, PMs, and QA stakeholders through consistent scorecards.
+
+## Links
+
+- GitHub repository: https://github.com/dendarko/llm-evaluation-framework
+- Docs (placeholder): https://example.com/docs/llm-eval
+
+## Next improvements
+
+- Add dataset drift detection and sampling recommendations.
+- Support multi-model benchmark comparisons in a single report.
+- Extend evaluator plugins for tool-use and agentic workflows.

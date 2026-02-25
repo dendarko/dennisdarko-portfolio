@@ -1,0 +1,23 @@
+---
+title: RAG Evaluation Checklist
+description: Practical checklist for evaluating retrieval quality and grounded answer behavior.
+date: 2026-01-28
+tags:
+  - RAG
+  - Evaluation
+checklistLength: 10
+audience: Teams moving from RAG prototype to production
+---
+
+## Checklist
+
+- Define target tasks and answer formats.
+- Build a representative golden dataset.
+- Score retrieval relevance separately from answer quality.
+- Require citation presence and citation correctness checks.
+- Track unsupported questions and fallback behavior.
+- Measure latency and cost per query type.
+- Test prompt injection and adversarial inputs.
+- Compare retrieval configurations (chunking, top-k, hybrid).
+- Run regression tests on prompt/model changes.
+- Review failure clusters and update datasets regularly.

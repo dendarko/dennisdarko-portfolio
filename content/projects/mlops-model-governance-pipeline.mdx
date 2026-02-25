@@ -1,0 +1,60 @@
+---
+title: MLOps Model Governance Pipeline
+description: Governance-centric MLOps pipeline for model registration, policy gates, and production monitoring.
+date: 2024-10-28
+tags:
+  - MLOps
+  - Governance
+  - Monitoring
+slug: mlops-model-governance-pipeline
+stack:
+  - Python
+  - Kubernetes
+  - MLflow
+  - Prometheus
+  - GitHub Actions
+problem: Teams had working models but no consistent approval workflow for promotions, rollback decisions, or audit evidence.
+built: A model governance pipeline that formalizes validation checks, registry approvals, deployment gates, and drift monitoring.
+architectureImage: /architecture/mlops-model-governance-pipeline.svg
+links:
+  github: https://github.com/dendarko/mlops-model-governance-pipeline
+  docs: https://example.com/docs/model-governance
+---
+
+## System design
+
+- Centralized model artifacts in a registry with environment-specific promotion states.
+- Added validation jobs for data checks, performance thresholds, and packaging requirements before deployment approval.
+- Triggered deployment pipelines only after policy checks passed and approvers signed off.
+- Emitted deployment metadata for traceability across staging and production clusters.
+
+## Evaluation / Quality
+
+- Encoded acceptance criteria per model family (classification, ranking, forecasting).
+- Stored benchmark results with versioned datasets for comparison across releases.
+- Automated post-deploy smoke tests and alerting for metric regressions.
+- Included rollback playbooks when drift or error rates crossed thresholds.
+
+## Reliability / Security
+
+- Enforced least-privilege service accounts for registry and deployment operations.
+- Signed artifacts and tracked checksums for promoted model packages.
+- Added monitoring for serving latency, prediction volume, and drift indicators.
+- Maintained audit logs linking code SHA, dataset version, model version, and deploy approver.
+
+## Results
+
+- Reduced manual handoffs during model release while improving compliance readiness.
+- Improved incident response through clear rollback triggers and deployment lineage.
+- Standardized release quality criteria across multiple teams.
+
+## Links
+
+- GitHub repository: https://github.com/dendarko/mlops-model-governance-pipeline
+- Docs (placeholder): https://example.com/docs/model-governance
+
+## Next improvements
+
+- Add approval policy-as-code for domain-specific requirements.
+- Expand drift diagnostics with feature-level explanations.
+- Integrate canary rollout scoring before full promotion.

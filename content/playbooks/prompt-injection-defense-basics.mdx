@@ -1,0 +1,24 @@
+---
+title: Prompt Injection Defense Basics
+description: Starter checklist for reducing prompt injection risk in LLM applications.
+date: 2025-12-03
+tags:
+  - Security
+  - Guardrails
+checklistLength: 11
+audience: Teams exposing LLM features to internal or external users
+---
+
+## Checklist
+
+- Treat retrieved/user content as untrusted input.
+- Keep system instructions separate from user/retrieved content.
+- Restrict tools and actions with explicit allowlists.
+- Validate output schema before downstream actions.
+- Require citations for knowledge-grounded claims.
+- Add policy filters for sensitive content/actions.
+- Sandbox tool execution where possible.
+- Log and review suspicious prompts.
+- Add adversarial test cases to evaluation suites.
+- Design human approval for high-risk actions.
+- Document known limitations and escalation paths.
