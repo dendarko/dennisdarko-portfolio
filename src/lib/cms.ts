@@ -11,7 +11,7 @@ import {
   getTeachingPosts as getLocalTeachingPosts
 } from "@/lib/content";
 import { getAllProjects as getLocalProjects, getProjectBySlug as getLocalProjectBySlug } from "@/lib/projects";
-import { isSanityConfigured, sanityFetch } from "@/lib/sanity/client";
+import { isSanityConfigured, sanityFetch } from "./sanity/client";
 import {
   architectureGalleryQuery,
   playbookBySlugQuery,
@@ -24,7 +24,7 @@ import {
   teachingBySlugQuery,
   teachingListQuery,
   teachingSlugsQuery
-} from "@/lib/sanity/queries";
+} from "./sanity/queries";
 import { siteConfig } from "@/lib/site";
 
 type SlugItem = { slug: string };
