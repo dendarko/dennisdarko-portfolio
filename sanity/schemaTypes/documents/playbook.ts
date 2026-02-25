@@ -27,3 +27,5 @@ export const playbook = defineType({
     }
   }
 });
+
+export default playbook;

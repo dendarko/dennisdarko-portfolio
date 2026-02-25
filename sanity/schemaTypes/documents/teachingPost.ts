@@ -33,3 +33,5 @@ export const teachingPost = defineType({
     }
   }
 });
+
+export default teachingPost;

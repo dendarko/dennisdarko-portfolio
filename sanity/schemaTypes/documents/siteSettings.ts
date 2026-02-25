@@ -83,3 +83,5 @@ export const siteSettings = defineType({
     }
   }
 });
+
+export default siteSettings;

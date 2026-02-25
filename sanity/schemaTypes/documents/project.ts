@@ -126,3 +126,5 @@ export const project = defineType({
     }
   }
 });
+
+export default project;
