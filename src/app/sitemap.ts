@@ -1,13 +1,12 @@
 import type { MetadataRoute } from "next";
-import { getPlaybookSlugs, getProjectSlugs, getSiteSettings, getTeachingSlugs } from "@/lib/cms";
+import { getPlaybookSlugs, getProjectSlugs, getSiteSettings } from "@/lib/cms";
 import { absoluteUrl } from "@/lib/seo";
 
 export const revalidate = 60;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [projectSlugs, teachingSlugs, playbookSlugs, site] = await Promise.all([
+  const [projectSlugs, playbookSlugs, site] = await Promise.all([
     getProjectSlugs(),
-    getTeachingSlugs(),
     getPlaybookSlugs(),
     getSiteSettings()
   ]);
@@ -15,7 +14,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes = [
     "/",
     "/projects",
-    "/teaching",
     "/playbooks",
     "/architecture",
     "/about",
@@ -32,10 +30,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const contentEntries: MetadataRoute.Sitemap = [
     ...projectSlugs.map((slug) => ({
       url: absoluteUrl(`/projects/${slug}`, site.url),
-      lastModified: new Date()
-    })),
-    ...teachingSlugs.map((slug) => ({
-      url: absoluteUrl(`/teaching/${slug}`, site.url),
       lastModified: new Date()
     })),
     ...playbookSlugs.map((slug) => ({

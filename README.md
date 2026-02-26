@@ -1,13 +1,13 @@
 # Dennis Darko Portfolio (Next.js + Sanity + Vercel)
 
-Production portfolio for an AI Engineer / LLMOps / MLOps / Educator, built with:
+Production portfolio for an AI Engineer / LLMOps / MLOps, built with:
 
 - Next.js App Router (Vercel-ready)
 - TypeScript + Tailwind CSS
 - Sanity CMS (Studio in `/sanity`)
 - ISR + on-demand revalidation
 
-The site is CMS-driven in production (projects, teaching posts, playbooks, site settings, resume file, featured projects, architecture images). A local fallback content layer remains in place so the Next app can still build before Sanity environment variables are configured.
+The site is CMS-driven in production (projects, playbooks, site settings, resume file, featured projects, architecture images). A local fallback content layer remains in place so the Next app can still build before Sanity environment variables are configured.
 
 ## Architecture
 
@@ -22,8 +22,6 @@ The site is CMS-driven in production (projects, teaching posts, playbooks, site 
 - `/`
 - `/projects`
 - `/projects/[slug]`
-- `/teaching`
-- `/teaching/[slug]`
 - `/playbooks`
 - `/playbooks/[slug]`
 - `/architecture`
@@ -123,7 +121,6 @@ This app is no longer static-export-only. It is intended for Vercel (or any Node
 
 - `siteSettings` (singleton)
 - `project`
-- `teachingPost`
 - `playbook`
 - `testimonial` (optional)
 
@@ -144,10 +141,6 @@ This app is no longer static-export-only. It is intended for Vercel (or any Node
 - architectureImage, gallery
 - caseStudy, body
 - relevanceScore
-
-### `teachingPost` supports:
-
-- title, slug, excerpt, date, topics, body, heroImage
 
 ### `playbook` supports:
 
@@ -203,8 +196,8 @@ Recommended webhook payload fields:
 The route revalidates:
 
 - `/`
-- list pages (`/projects`, `/teaching`, `/playbooks`, `/architecture`, `/resume`)
-- relevant slug page (`/projects/[slug]`, `/teaching/[slug]`, `/playbooks/[slug]`) when provided
+- list pages (`/projects`, `/playbooks`, `/architecture`, `/resume`)
+- relevant slug page (`/projects/[slug]`, `/playbooks/[slug]`) when provided
 - identity pages when `siteSettings` changes
 
 ## Vercel Deployment
@@ -225,7 +218,6 @@ The route revalidates:
 Once Sanity is configured:
 
 - Add a new `project` in Sanity -> it appears in `/projects` (and `/projects/[slug]` if `caseStudy` + body content are present)
-- Add `teachingPost` -> appears in `/teaching`
 - Add `playbook` -> appears in `/playbooks`
 - Upload a resume PDF in `siteSettings.resumeFile` -> `/resume` and Home CTA use it
 - Update `featuredProjects` in `siteSettings` -> Home featured section order updates
@@ -236,7 +228,6 @@ Legacy repo content still exists:
 
 - `src/data/projects.json`
 - `content/projects/*.mdx`
-- `content/teaching/*.mdx`
 - `content/playbooks/*.mdx`
 
 These are used as a fallback when Sanity env vars are missing. In production CMS mode, Sanity content takes precedence.

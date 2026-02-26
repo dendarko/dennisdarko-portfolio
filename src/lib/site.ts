@@ -5,9 +5,9 @@ const identityLinks = {
 
 export const siteConfig = {
   name: "Dennis Darko",
-  headline: "AI Engineer | LLMOps | MLOps | Educator",
+  headline: "AI Engineer | LLMOps | MLOps",
   description:
-    "AI Engineer specializing in production LLM systems, RAG architectures, evaluation frameworks, and ML platform engineering. I design, deploy, and monitor scalable AI systems with strong observability, guardrails, and cost optimization. I also teach Python, machine learning, and AI engineering.",
+    "AI Engineer specializing in production LLM systems, RAG architectures, evaluation frameworks, and ML platform engineering. I design, deploy, and monitor scalable AI systems with strong observability, guardrails, and cost optimization.",
   url: "https://dennisdarko.darkolab.com",
   email: "dennisdarko0909@gmail.com",
   location: "Canada",
@@ -34,10 +34,10 @@ export const siteConfig = {
     "Generative AI engineering",
     "AI infrastructure",
     "ML platform engineering",
-    "Technical AI educator"
+    "AI platform architecture"
   ],
   shortName: "Dennis Darko",
-  title: "Dennis Darko | AI Engineer | LLMOps | MLOps | Educator",
+  title: "Dennis Darko | AI Engineer | LLMOps | MLOps",
   social: {
     ...identityLinks,
     x: "https://x.com/dendarko"
@@ -45,7 +45,6 @@ export const siteConfig = {
   nav: [
     { href: "/", label: "Home" },
     { href: "/projects", label: "Projects" },
-    { href: "/teaching", label: "Teaching" },
     { href: "/playbooks", label: "Playbooks" },
     { href: "/architecture", label: "Architecture" },
     { href: "/about", label: "About" },
@@ -58,7 +57,7 @@ export const siteConfig = {
     { href: "/contact", label: "Contact" },
     { href: "/recruiter", label: "Recruiter Snapshot" }
   ] as const,
-  roles: ["Senior AI Engineer", "ML Platform Engineer", "LLMOps Engineer", "Technical Educator"],
+  roles: ["Senior AI Engineer", "ML Platform Engineer", "LLMOps Engineer"],
   recruiterSkillSnapshot: [
     "RAG systems",
     "LLM evaluation",
@@ -95,14 +94,6 @@ export const siteConfig = {
       title: "CI/CD & Deployment",
       description: "Static checks, test automation, artifact versioning, and reliable rollouts to cloud infra."
     }
-  ],
-  teachingTopics: [
-    "Prompt engineering for production",
-    "RAG architecture decisions",
-    "LLM evaluation and QA",
-    "MLOps fundamentals",
-    "Python for AI systems",
-    "Observability for AI products"
   ]
 } as const;
 

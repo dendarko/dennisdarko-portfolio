@@ -53,16 +53,6 @@ export interface CmsProjectDetail extends ProjectRecord, PortableTextContent {
   }>;
 }
 
-export interface CmsTeachingPost extends PortableTextContent {
-  slug: string;
-  title: string;
-  description: string;
-  date: string;
-  topics: string[];
-  level?: "Beginner" | "Intermediate" | "Advanced";
-  heroImageUrl?: string;
-}
-
 export interface CmsPlaybook extends PortableTextContent {
   slug: string;
   title: string;

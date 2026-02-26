@@ -7,8 +7,8 @@ import { singletonDeskStructure } from "./plugins/singletonDeskStructure";
 export default defineConfig({
   name: "default",
   title: "Dennis Darko Portfolio CMS",
-  projectId: process.env.SANITY_STUDIO_PROJECT_ID || "your_project_id",
-  dataset: process.env.SANITY_STUDIO_DATASET || "production",
+  projectId: "vllfiv7k",
+  dataset: "production",
   plugins: [deskTool({ structure: singletonDeskStructure }), visionTool()],
   schema: {
     types: schemaTypes

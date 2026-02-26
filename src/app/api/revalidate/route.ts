@@ -14,7 +14,7 @@ function normalizeSlug(value: unknown) {
 function pathsForPayload(payload: Record<string, unknown>) {
   const type = typeof payload._type === "string" ? payload._type : undefined;
   const slug = normalizeSlug(payload.slug);
-  const paths = new Set<string>(["/", "/projects", "/teaching", "/playbooks", "/architecture", "/resume"]);
+  const paths = new Set<string>(["/", "/projects", "/playbooks", "/architecture", "/resume"]);
 
   if (type === "siteSettings") {
     paths.add("/");
@@ -29,13 +29,6 @@ function pathsForPayload(payload: Record<string, unknown>) {
     paths.add("/architecture");
     if (slug) {
       paths.add(`/projects/${slug}`);
-    }
-  }
-
-  if (type === "teachingPost") {
-    paths.add("/teaching");
-    if (slug) {
-      paths.add(`/teaching/${slug}`);
     }
   }
 

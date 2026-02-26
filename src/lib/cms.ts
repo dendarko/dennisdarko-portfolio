@@ -1,14 +1,12 @@
 import { cache } from "react";
 import type { ArchitectureGalleryItem, ProjectRecord, ProjectRecordSource } from "@/types/content";
-import type { CmsPlaybook, CmsProjectDetail, CmsTeachingPost, SiteSettingsData } from "@/types/cms";
+import type { CmsPlaybook, CmsProjectDetail, SiteSettingsData } from "@/types/cms";
 import { getArchitectureGalleryItems as getLocalArchitectureGalleryItems } from "@/lib/architecture";
 import {
   getPlaybookBySlug as getLocalPlaybookBySlug,
   getPlaybooks as getLocalPlaybooks,
   getProjectCaseStudies as getLocalProjectCaseStudies,
-  getProjectCaseStudyBySlug as getLocalProjectCaseStudyBySlug,
-  getTeachingPostBySlug as getLocalTeachingPostBySlug,
-  getTeachingPosts as getLocalTeachingPosts
+  getProjectCaseStudyBySlug as getLocalProjectCaseStudyBySlug
 } from "@/lib/content";
 import { getAllProjects as getLocalProjects, getProjectBySlug as getLocalProjectBySlug } from "@/lib/projects";
 import { isSanityConfigured, sanityFetch } from "./sanity/client";
@@ -20,10 +18,7 @@ import {
   projectBySlugQuery,
   projectListQuery,
   projectSlugsQuery,
-  siteSettingsQuery,
-  teachingBySlugQuery,
-  teachingListQuery,
-  teachingSlugsQuery
+  siteSettingsQuery
 } from "./sanity/queries";
 import { siteConfig } from "@/lib/site";
 
@@ -247,102 +242,6 @@ export async function getProjectDetailBySlug(slug: string): Promise<CmsProjectDe
       summaryBuilt: doc?.frontmatter.built,
       summaryStack: doc?.frontmatter.stack ?? project.tags,
       links: doc?.frontmatter.links
-    };
-  }
-}
-
-export const getTeachingPosts = cache(async (): Promise<CmsTeachingPost[]> => {
-  if (!isSanityConfigured()) {
-    const docs = await getLocalTeachingPosts();
-    return docs.map((doc) => ({
-      slug: doc.slug,
-      title: doc.frontmatter.title,
-      description: doc.frontmatter.description,
-      date: doc.frontmatter.date,
-      topics: doc.frontmatter.topics,
-      level: doc.frontmatter.level,
-      bodyMdx: doc.content
-    }));
-  }
-
-  try {
-    const rows = await sanityFetch<any[]>(teachingListQuery);
-    return (rows ?? []).map((row) => ({
-      slug: row.slug,
-      title: row.title,
-      description: row.description || "",
-      date: row.date,
-      topics: row.topics ?? [],
-      level: row.level ?? undefined,
-      heroImageUrl: row.heroImageUrl ?? undefined
-    }));
-  } catch {
-    const docs = await getLocalTeachingPosts();
-    return docs.map((doc) => ({
-      slug: doc.slug,
-      title: doc.frontmatter.title,
-      description: doc.frontmatter.description,
-      date: doc.frontmatter.date,
-      topics: doc.frontmatter.topics,
-      level: doc.frontmatter.level,
-      bodyMdx: doc.content
-    }));
-  }
-});
-
-export async function getTeachingSlugs() {
-  if (!isSanityConfigured()) {
-    const docs = await getLocalTeachingPosts();
-    return docs.map((doc) => doc.slug);
-  }
-  try {
-    const rows = await sanityFetch<SlugItem[]>(teachingSlugsQuery);
-    return (rows ?? []).map((row) => row.slug);
-  } catch {
-    const docs = await getLocalTeachingPosts();
-    return docs.map((doc) => doc.slug);
-  }
-}
-
-export async function getTeachingPostDetailBySlug(slug: string): Promise<CmsTeachingPost | null> {
-  if (!isSanityConfigured()) {
-    const doc = await getLocalTeachingPostBySlug(slug).catch(() => null);
-    if (!doc) return null;
-    return {
-      slug: doc.slug,
-      title: doc.frontmatter.title,
-      description: doc.frontmatter.description,
-      date: doc.frontmatter.date,
-      topics: doc.frontmatter.topics,
-      level: doc.frontmatter.level,
-      bodyMdx: doc.content
-    };
-  }
-
-  try {
-    const row = await sanityFetch<any>(teachingBySlugQuery, { slug });
-    if (!row) return null;
-    return {
-      slug: row.slug,
-      title: row.title,
-      description: row.description || "",
-      date: row.date,
-      topics: row.topics ?? [],
-      level: row.level ?? undefined,
-      heroImageUrl: row.heroImageUrl ?? undefined,
-      bodyPortableText: row.body ?? []
-    };
-  } catch {
-    const doc = await getLocalTeachingPostBySlug(slug).catch(() => null);
-    if (!doc) return null;
-    return {
-      slug: doc.slug,
-      title: doc.frontmatter.title,
-      description: doc.frontmatter.description,
-      date: doc.frontmatter.date,
-      topics: doc.frontmatter.topics,
-      level: doc.frontmatter.level,
-      bodyMdx: doc.content
     };
   }
 }

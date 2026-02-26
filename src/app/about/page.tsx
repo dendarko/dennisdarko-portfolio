@@ -7,7 +7,7 @@ import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   title: "About",
-  description: "About Dennis Darko: AI engineer and educator focused on production-ready ML and LLM systems."
+  description: "About Dennis Darko: AI engineer focused on production-ready ML and LLM systems."
 });
 
 export const revalidate = 60;
@@ -19,7 +19,7 @@ export default async function AboutPage() {
       <Container className="space-y-8">
         <SectionHeading
           title="About Dennis Darko"
-          subtitle="AI Engineer and Educator focused on production systems, quality assurance, and helping teams ship responsibly."
+          subtitle="AI Engineer focused on production systems, quality assurance, and shipping reliable AI products."
         />
 
         <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
@@ -30,9 +30,6 @@ export default async function AboutPage() {
               </p>
               <p>
                 I care about evaluation discipline because most AI systems fail in the gap between a demo and a maintained product. That gap is where testing, guardrails, telemetry, and deployment design matter.
-              </p>
-              <p>
-                In parallel, I teach engineers and teams how to build production AI systems with practical workflows. My teaching style is hands-on and system-first: we define the task, evaluate the output, and design for operations from the start.
               </p>
               <p>
                 Reach me at{" "}

@@ -82,29 +82,6 @@ export const projectBySlugQuery = groq`*[_type == "project" && slug.current == $
   }
 }`;
 
-export const teachingListQuery = groq`*[_type == "teachingPost"] | order(date desc){
-  title,
-  "slug": slug.current,
-  "description": coalesce(excerpt, ""),
-  date,
-  topics,
-  level,
-  "heroImageUrl": heroImage.asset->url
-}`;
-
-export const teachingSlugsQuery = groq`*[_type == "teachingPost" && defined(slug.current)]{ "slug": slug.current }`;
-
-export const teachingBySlugQuery = groq`*[_type == "teachingPost" && slug.current == $slug][0]{
-  title,
-  "slug": slug.current,
-  "description": coalesce(excerpt, ""),
-  date,
-  topics,
-  level,
-  "heroImageUrl": heroImage.asset->url,
-  body
-}`;
-
 export const playbookListQuery = groq`*[_type == "playbook"] | order(coalesce(updatedAt, date) desc){
   title,
   "slug": slug.current,

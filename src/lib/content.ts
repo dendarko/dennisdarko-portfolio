@@ -5,8 +5,7 @@ import type {
   MdxFrontmatter,
   MdxDocument,
   PlaybookFrontmatter,
-  ProjectCaseStudyFrontmatter,
-  TeachingPostFrontmatter
+  ProjectCaseStudyFrontmatter
 } from "@/types/content";
 
 const contentRoot = path.join(process.cwd(), "content");
@@ -52,14 +51,6 @@ export function getProjectCaseStudies() {
 
 export function getProjectCaseStudyBySlug(slug: string) {
   return getDocBySlug<ProjectCaseStudyFrontmatter>("projects", slug);
-}
-
-export function getTeachingPosts() {
-  return getCollection<TeachingPostFrontmatter>("teaching");
-}
-
-export function getTeachingPostBySlug(slug: string) {
-  return getDocBySlug<TeachingPostFrontmatter>("teaching", slug);
 }
 
 export function getPlaybooks() {

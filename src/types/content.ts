@@ -92,12 +92,6 @@ export interface ProjectCaseStudyFrontmatter extends MdxFrontmatter {
   };
 }
 
-export interface TeachingPostFrontmatter extends MdxFrontmatter {
-  slug: string;
-  topics: string[];
-  level: "Beginner" | "Intermediate" | "Advanced";
-}
-
 export interface PlaybookFrontmatter extends MdxFrontmatter {
   slug: string;
   checklistLength: number;
