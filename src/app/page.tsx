@@ -36,11 +36,14 @@ export default async function HomePage() {
                 <p className="mt-2 text-sm font-medium text-ink-500 dark:text-ink-300">
                   Based in {site.location}
                 </p>
-                <p className="mt-4 max-w-2xl text-base text-ink-600 dark:text-ink-300 sm:text-lg">
-                  Production AI Engineer building reliable LLM systems (RAG, evaluation, and observability) - from prototype to deployment.
+                <p className="mt-1 text-xs font-medium text-ink-400 dark:text-ink-400">
+                  Open to AI Engineering roles
+                </p>
+                <p className="mt-6 max-w-2xl text-base text-ink-600 dark:text-ink-300 sm:text-lg">
+                  Production AI Engineer building and shipping reliable LLM systems (RAG, evaluation, agentic workflows, and observability) from prototype to production.
                 </p>
                 <p className="mt-3 max-w-2xl text-sm text-ink-500 dark:text-ink-300 sm:text-base">
-                  I ship production-grade AI services with guardrails, regression tests, monitoring/tracing, and cost/latency optimization.
+                  I design production-grade AI services with guardrails, regression testing, monitoring/tracing, and cost/latency optimization.
                 </p>
                 <div className="mt-6 flex flex-wrap gap-3">
                   <Link href="/projects" className="btn-primary">
