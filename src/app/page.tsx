@@ -1,4 +1,5 @@
 ﻿import Link from "next/link";
+import Image from "next/image";
 import { JourneyTimeline } from "@/components/journey-timeline";
 import { ProjectCard } from "@/components/project-card";
 import { SectionHeading } from "@/components/section-heading";
@@ -24,7 +25,7 @@ export default async function HomePage() {
       <section className="pt-10 sm:pt-14">
         <Container>
           <div className="card overflow-hidden p-6 sm:p-8">
-            <div className="grid gap-8 lg:grid-cols-[1.25fr_0.75fr] lg:items-end">
+            <div className="grid items-center gap-12 md:grid-cols-2">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.16em] text-accent-700 dark:text-accent-300">
                   {site.name}
@@ -62,22 +63,15 @@ export default async function HomePage() {
                   ))}
                 </div>
               </div>
-              <div className="grid gap-3">
-                <div className="rounded-2xl border border-accent-200 bg-gradient-to-br from-accent-50 to-white p-4 dark:border-accent-400/20 dark:from-accent-900/20 dark:to-white/5">
-                  <p className="text-sm font-medium">2026 Focus</p>
-                  <p className="mt-1 text-sm text-ink-600 dark:text-ink-300">
-                    LLMOps, evaluation pipelines, AI observability, and high-trust internal AI products.
-                  </p>
-                </div>
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="rounded-2xl border border-ink-200 bg-white p-4 dark:border-white/10 dark:bg-white/5">
-                    <p className="text-xs uppercase tracking-[0.14em] text-ink-500 dark:text-ink-300">Shipping style</p>
-                    <p className="mt-2 text-sm font-medium">Tested + observable</p>
-                  </div>
-                  <div className="rounded-2xl border border-ink-200 bg-white p-4 dark:border-white/10 dark:bg-white/5">
-                    <p className="text-xs uppercase tracking-[0.14em] text-ink-500 dark:text-ink-300">Engineering focus</p>
-                    <p className="mt-2 text-sm font-medium">Reliability + deployment</p>
-                  </div>
+              <div className="flex justify-center md:justify-end">
+                <div className="relative h-80 w-80 md:h-96 md:w-96">
+                  <Image
+                    src="/images/dennis-darko.jpg"
+                    alt="Dennis Darko"
+                    fill
+                    className="object-cover rounded-xl shadow-xl"
+                    priority
+                  />
                 </div>
               </div>
             </div>
