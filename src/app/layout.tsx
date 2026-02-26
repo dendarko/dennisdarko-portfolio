@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { AnalyticsPlaceholder } from "@/components/analytics-placeholder";
+import { AnalyticsProvider } from "@/components/analytics-provider";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ThemeProvider, ThemeScript } from "@/components/ui/theme-provider";
@@ -53,7 +53,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <SiteHeader brandName={site.name} />
           <main id="main-content">{children}</main>
           <SiteFooter site={site} />
-          <AnalyticsPlaceholder />
+          <AnalyticsProvider />
         </ThemeProvider>
         <script
           type="application/ld+json"

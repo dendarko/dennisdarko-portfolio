@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MdxRenderer } from "@/components/mdx/mdx-renderer";
@@ -58,7 +58,7 @@ export default async function ProjectCaseStudyPage({ params }: { params: Promise
       <Container className="max-w-5xl space-y-6">
         <header className="card p-6">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accent-700 dark:text-accent-300">
-            Case Study • {project.stage}
+            Case Study - {project.stage}
           </p>
           <h1 className="mt-2 text-3xl font-semibold sm:text-4xl">{project.title}</h1>
           <p className="mt-3 text-sm text-ink-600 dark:text-ink-300">{project.impact}</p>
@@ -188,14 +188,14 @@ export default async function ProjectCaseStudyPage({ params }: { params: Promise
             ) : project.bodyMdx ? (
               <MdxRenderer source={project.bodyMdx} />
             ) : (
-              <p>Case study content will appear here after publishing the project body in Sanity.</p>
+              <p>Detailed case study content will be added soon.</p>
             )}
           </div>
         </article>
 
         {project.nextImprovements ? (
           <section className="card p-6">
-            <h2 className="text-lg font-semibold">What I’d Improve Next</h2>
+            <h2 className="text-lg font-semibold">What I'd Improve Next</h2>
             <p className="mt-3 text-sm text-ink-600 dark:text-ink-300 whitespace-pre-line">
               {project.nextImprovements}
             </p>
@@ -205,3 +205,5 @@ export default async function ProjectCaseStudyPage({ params }: { params: Promise
     </div>
   );
 }
+
+

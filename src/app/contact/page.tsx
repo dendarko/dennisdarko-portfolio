@@ -19,7 +19,7 @@ export default async function ContactPage() {
       <Container className="max-w-4xl">
         <SectionHeading
           title="Contact"
-          subtitle="Hiring, consulting, workshops, or speaking. Use the details below and replace placeholders as needed."
+          subtitle="Hiring, consulting, or collaboration inquiries. Reach out using the details below."
         />
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           <div className="card p-6">

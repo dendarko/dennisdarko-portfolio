@@ -56,7 +56,7 @@ export default async function PlaybookPage({ params }: { params: Promise<{ slug:
             ) : playbook.bodyMdx ? (
               <MdxRenderer source={playbook.bodyMdx} />
             ) : (
-              <p>Playbook content will appear here after publishing in Sanity.</p>
+              <p>This playbook is being updated. Please check back soon.</p>
             )}
           </div>
         </article>

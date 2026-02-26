@@ -1,28 +1,23 @@
-import Link from "next/link";
-import { ContentCard } from "@/components/content-card";
+﻿import Link from "next/link";
 import { JourneyTimeline } from "@/components/journey-timeline";
 import { ProjectCard } from "@/components/project-card";
 import { SectionHeading } from "@/components/section-heading";
 import { Container } from "@/components/ui/container";
-import { getFeaturedProjects, getSiteSettings, getTeachingPosts } from "@/lib/cms";
+import { getFeaturedProjects, getSiteSettings } from "@/lib/cms";
 import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
 export const metadata = buildMetadata({
-  title: "AI Engineer + Educator Portfolio",
+  title: "AI Engineer Portfolio",
   description:
-    "Production AI systems case studies, LLMOps playbooks, and teaching resources by Dennis Darko.",
+    "Production AI systems case studies, LLMOps playbooks, and architecture artifacts by Dennis Darko.",
   image: "/og/default-og.svg"
 });
 
 export const revalidate = 60;
 
 export default async function HomePage() {
-  const [featuredProjects, teachingPosts, site] = await Promise.all([
-    getFeaturedProjects(5),
-    getTeachingPosts(),
-    getSiteSettings()
-  ]);
+  const [featuredProjects, site] = await Promise.all([getFeaturedProjects(5), getSiteSettings()]);
 
   return (
     <div className="pb-16">
@@ -41,10 +36,10 @@ export default async function HomePage() {
                   Based in {site.location}
                 </p>
                 <p className="mt-4 max-w-2xl text-base text-ink-600 dark:text-ink-300 sm:text-lg">
-                  Production AI Engineer building reliable LLM systems (RAG, evaluation, and observability) — from prototype to deployment.
+                  Production AI Engineer building reliable LLM systems (RAG, evaluation, and observability) - from prototype to deployment.
                 </p>
                 <p className="mt-3 max-w-2xl text-sm text-ink-500 dark:text-ink-300 sm:text-base">
-                  I ship production-grade AI services with guardrails, regression tests, monitoring/tracing, and cost/latency optimization. I also teach Python, ML, and AI engineering.
+                  I ship production-grade AI services with guardrails, regression tests, monitoring/tracing, and cost/latency optimization.
                 </p>
                 <div className="mt-6 flex flex-wrap gap-3">
                   <Link href="/projects" className="btn-primary">
@@ -59,7 +54,7 @@ export default async function HomePage() {
                     "12+ production projects",
                     "LLMOps + MLOps",
                     "RAG + Evaluation",
-                    "FastAPI • Docker • CI/CD"
+                    "FastAPI - Docker - CI/CD"
                   ].map((item) => (
                     <span key={item} className="chip">
                       {item}
@@ -80,8 +75,8 @@ export default async function HomePage() {
                     <p className="mt-2 text-sm font-medium">Tested + observable</p>
                   </div>
                   <div className="rounded-2xl border border-ink-200 bg-white p-4 dark:border-white/10 dark:bg-white/5">
-                    <p className="text-xs uppercase tracking-[0.14em] text-ink-500 dark:text-ink-300">Teaching style</p>
-                    <p className="mt-2 text-sm font-medium">Practical + systems-first</p>
+                    <p className="text-xs uppercase tracking-[0.14em] text-ink-500 dark:text-ink-300">Engineering focus</p>
+                    <p className="mt-2 text-sm font-medium">Reliability + deployment</p>
                   </div>
                 </div>
               </div>
@@ -129,14 +124,14 @@ export default async function HomePage() {
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-500 dark:text-ink-300">Proof Metrics</p>
                 <h2 className="mt-2 text-2xl font-semibold">Engineering signals recruiters can scan fast</h2>
                 <p className="mt-2 text-sm text-ink-600 dark:text-ink-300">
-                  Replace these placeholders with live GitHub/portfolio metrics when ready.
+                  Snapshot of production-focused portfolio signals across projects, case studies, and engineering depth.
                 </p>
               </div>
               <div className="grid gap-3 sm:grid-cols-3">
                 {[
                   ["Pinned projects", "10+"],
                   ["Case studies", "5"],
-                  ["Teaching sessions", "20+"]
+                  ["Production systems", "12+"]
                 ].map(([label, value]) => (
                   <div key={label} className="rounded-2xl border border-ink-200 bg-white p-4 dark:border-white/10 dark:bg-white/5">
                     <p className="text-xs uppercase tracking-[0.14em] text-ink-500 dark:text-ink-300">{label}</p>
@@ -150,62 +145,6 @@ export default async function HomePage() {
                 <span key={chip} className="chip">
                   {chip}
                 </span>
-              ))}
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      <section className="pt-16">
-        <Container>
-          <SectionHeading
-            title="Teaching & Community"
-            subtitle="Courses, workshops, mentoring, and engineering education content centered on practical AI systems."
-          />
-          <div className="mt-6 grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
-            <div className="grid gap-4 md:grid-cols-2">
-              <div className="card p-5">
-                <h3 className="text-base font-semibold">Workshops</h3>
-                <p className="mt-2 text-sm text-ink-600 dark:text-ink-300">
-                  Production RAG, LLM evaluation, observability, and deployment readiness workshops.
-                </p>
-                <Link href="/teaching" className="mt-4 inline-flex text-sm font-medium text-accent-700 dark:text-accent-300">
-                  View teaching hub →
-                </Link>
-              </div>
-              <div className="card p-5">
-                <h3 className="text-base font-semibold">Courses & Talks</h3>
-                <p className="mt-2 text-sm text-ink-600 dark:text-ink-300">
-                  Placeholder links for upcoming courses, conference talks, and guest sessions.
-                </p>
-                <Link href="/contact" className="mt-4 inline-flex text-sm font-medium text-accent-700 dark:text-accent-300">
-                  Invite me to teach →
-                </Link>
-              </div>
-              <div className="card p-5 md:col-span-2">
-                <h3 className="text-base font-semibold">Mentoring & Team Enablement</h3>
-                <p className="mt-2 text-sm text-ink-600 dark:text-ink-300">
-                  Coaching engineers and teams on AI system design, debugging, evaluation strategy, and production operations.
-                </p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {siteConfig.teachingTopics.map((topic) => (
-                    <span key={topic} className="chip">
-                      {topic}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <div className="space-y-4">
-              {teachingPosts.slice(0, 3).map((post) => (
-                <ContentCard
-                  key={post.slug}
-                  title={post.title}
-                  description={post.description}
-                  href={`/teaching/${post.slug}`}
-                  date={post.date}
-                  meta={`${post.level ?? "Teaching"} • ${post.topics.join(", ")}`}
-                />
               ))}
             </div>
           </div>
@@ -229,12 +168,12 @@ export default async function HomePage() {
           <div className="card overflow-hidden bg-gradient-to-r from-ink-900 to-accent-900 p-6 text-white dark:from-accent-900 dark:to-ink-950">
             <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
               <div>
-                <p className="text-xs uppercase tracking-[0.16em] text-white/70">Let’s build</p>
+                <p className="text-xs uppercase tracking-[0.16em] text-white/70">Let's build</p>
                 <h2 className="mt-2 text-2xl font-semibold sm:text-3xl">
-                  Hiring for AI engineering, LLMOps, or technical education?
+                  Hiring for AI engineering, LLMOps, or ML platform work?
                 </h2>
                 <p className="mt-2 text-sm text-white/80">
-                  I build systems that can be trusted in production and teach teams how to operate them well.
+                  I build systems that can be trusted in production with strong evaluation, observability, and operational discipline.
                 </p>
               </div>
               <div className="flex flex-wrap gap-3">
@@ -252,3 +191,5 @@ export default async function HomePage() {
     </div>
   );
 }
+
+

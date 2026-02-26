@@ -1,3 +1,5 @@
+import { access } from "node:fs/promises";
+import path from "node:path";
 import Link from "next/link";
 import { SectionHeading } from "@/components/section-heading";
 import { Container } from "@/components/ui/container";
@@ -11,40 +13,66 @@ export const metadata = buildMetadata({
 
 export const revalidate = 60;
 
+async function getResumeLink(siteResumeFileUrl?: string | null) {
+  if (siteResumeFileUrl) {
+    return siteResumeFileUrl;
+  }
+
+  const localResumePath = path.join(process.cwd(), "public", "resume.pdf");
+
+  try {
+    await access(localResumePath);
+    return "/resume.pdf";
+  } catch {
+    return null;
+  }
+}
+
 export default async function ResumePage() {
   const site = await getSiteSettings();
-  const resumeUrl = site.resumeFileUrl || "/resume.pdf";
+  const resumeUrl = await getResumeLink(site.resumeFileUrl);
+  const isLocalFile = resumeUrl?.startsWith("/");
 
   return (
     <div className="pb-16 pt-10">
       <Container className="max-w-4xl">
         <SectionHeading
           title="Resume"
-          subtitle="Download the PDF resume and replace the placeholder file in `public/resume.pdf` with the final version."
+          subtitle="Download my latest resume (PDF)."
         />
-        <div className="mt-6 grid gap-4 md:grid-cols-[1.1fr_0.9fr]">
-          <div className="card p-6">
-            <h2 className="text-lg font-semibold">Download</h2>
-            <p className="mt-2 text-sm text-ink-600 dark:text-ink-300">
-              The portfolio links to a static resume file suitable for any static hosting provider.
-            </p>
-            <div className="mt-4 flex flex-wrap gap-3">
-              <a href={resumeUrl} className="btn-primary" download>
-                Download Resume PDF
-              </a>
-              <Link href="/contact" className="btn-secondary">
-                Contact
-              </Link>
-            </div>
-          </div>
-          <div className="card p-6">
-            <h2 className="text-lg font-semibold">Replace Placeholder</h2>
-            <ol className="mt-3 space-y-2 text-sm text-ink-600 dark:text-ink-300">
-              <li>1. Export your final resume as PDF.</li>
-              <li>2. Upload it in Sanity `siteSettings.resumeFile` (or place a fallback at `public/resume.pdf`).</li>
-              <li>3. Publish in Sanity (or rebuild/redeploy if using the fallback file).</li>
-            </ol>
-          </div>
+        <div className="mt-6 card p-6">
+          {resumeUrl ? (
+            <>
+              <p className="text-sm text-ink-600 dark:text-ink-300">
+                Download the current PDF version of my resume, or get in touch for role-specific details.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-3">
+                <a
+                  href={resumeUrl}
+                  className="btn-primary"
+                  target="_blank"
+                  rel="noreferrer"
+                  download={isLocalFile ? true : undefined}
+                >
+                  Download Resume (PDF)
+                </a>
+                <Link href="/contact" className="btn-secondary">
+                  Contact
+                </Link>
+              </div>
+            </>
+          ) : (
+            <>
+              <p className="text-sm text-ink-600 dark:text-ink-300">
+                Resume is being updated. Please check back soon or contact me.
+              </p>
+              <div className="mt-4">
+                <Link href="/contact" className="btn-secondary">
+                  Contact
+                </Link>
+              </div>
+            </>
+          )}
         </div>
       </Container>
     </div>
